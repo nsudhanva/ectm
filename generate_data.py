@@ -134,7 +134,7 @@ for i in range(0, 10000) :
 
 head_rows = ["Engine", "Time", "Air Temperature", "Exhaust Gas Temperature", "Fuel Flow", "Low Pressure Fan Speed (N1)", "High Pressure Rotor Speed (N2)", "EGT Normal", "Fuel Flow Normal", "N1 Normal", "N2 Normal", "Normal"]                       
 
-with open("engine_data.csv", "w") as csv_file :
+with open("engine_data_1.csv", "w") as csv_file :
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerows([head_rows])
     
