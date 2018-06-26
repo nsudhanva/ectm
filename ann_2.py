@@ -4,16 +4,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv('engine_data.csv')
-X = dataset.iloc[:, 7:11].values
+dataset = pd.read_csv('engine_data_1.csv')
+X = dataset.iloc[:, 2:7].values
 y = dataset.iloc[:, [11]].values
 
 # Encoding categorical data
 y = y * 1
-X[5] = X[5] * 1
-X[6] = X[6] * 1
-X[7] = X[7] * 1
-X[8] = X[8] * 1
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
@@ -36,14 +32,10 @@ classifier = Sequential()
 
 # Adding the input layer and the first hidden layer
 # classifier.add(Dense(output_dim = 2, init = "uniform", activation='relu', input_dim = 2))
-classifier.add(Dense(activation="relu", input_dim=9, units=5, kernel_initializer="uniform"))
+classifier.add(Dense(activation="relu", input_dim=5, units=10, kernel_initializer="uniform"))
 
 # Adding the second hidden layer
-classifier.add(Dense(activation="relu", units=5, kernel_initializer="uniform"))
-
-#classifier.add(Dense(activation="relu", units=5, kernel_initializer="uniform"))
-#classifier.add(Dense(activation="relu", units=5, kernel_initializer="uniform"))
-#classifier.add(Dense(activation="relu", units=5, kernel_initializer="uniform"))
+classifier.add(Dense(activation="relu", units=10, kernel_initializer="uniform"))
 
 # Adding the output layer
 classifier.add(Dense(activation="sigmoid", units=1, kernel_initializer="uniform"))
@@ -52,13 +44,13 @@ classifier.add(Dense(activation="sigmoid", units=1, kernel_initializer="uniform"
 classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 # Fitting the ANN to the Training set
-classifier.fit(X_train, y_train, batch_size = 10, nb_epoch = 3)
+classifier.fit(X_train, y_train, batch_size = 100, nb_epoch = 100)
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
 y_pred = (y_pred > 0.5)
 
-classifier.save('classifier.h5') # creates a HDF5 file 'my_model.h5'
+#classifier.save('classifier.h5') # creates a HDF5 file 'my_model.h5'
 
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix

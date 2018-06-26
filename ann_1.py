@@ -7,11 +7,14 @@ import pandas as pd
 dataset = pd.read_csv('engine_data_1.csv')
 X = dataset.iloc[:, 2:11].values
 
-# Encoding categorical data
-X[5] = X[5] * 1
-X[6] = X[6] * 1
-X[7] = X[7] * 1
-X[8] = X[8] * 1
+y_test = dataset.iloc[:, [11]].values
+
+
+encode = lambda x: x * 1
+X['EGT Normal'] = X['EGT Normal'].apply(encode)
+X['Fuel Flow Normal'] = X['Fuel Flow Normal'].apply(encode)
+X['N1 Normal'] = X['N1 Normal'].apply(encode)
+X['N2 Normal'] = X['N2 Normal'].apply(encode)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
@@ -23,20 +26,13 @@ import keras
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.models import load_model
-from keras.models import model_from_json
 
 # Initialising the ANN
-#classifier = load_model('sweg.h5')
-
-json_file = open('classifier.json', 'r')
-classifier_json = json_file.read()
-json_file.close()
-
-classifier_model = model_from_json(classifier_json)
-
-classifier_model.load_weights("classifier_weight.h5")
-
-classifier_model = load_model('classifier_weight.hdf5')
+classifier = load_model('classifier.h5')
 
 # Predicting the Test set results
-y_pred = classifier_model.predict_classes(X_test)
+y_pred = classifier.predict(X_test)
+y_pred = (y_pred > 0.5)
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
