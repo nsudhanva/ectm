@@ -9,6 +9,7 @@ X = dataset.iloc[:, 0:7].values
 y = dataset.iloc[:, [11]].values
 
 # Encoding categorical data
+# convert true/false to 1/0
 y = y * 1
 
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
@@ -19,6 +20,7 @@ X[:, 1] = labelencoder_X_1.fit_transform(X[:, 1])
 onehotencoder = OneHotEncoder(categorical_features = [0, 1])
 X = onehotencoder.fit_transform(X).toarray()
 
+# avoid dummy variable trap
 categories = [0, 1]
 dummies = []
 dummies_sum = 0
