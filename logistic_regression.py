@@ -39,15 +39,16 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Fitting K-NN to the Training set
-from sklearn.neighbors import KNeighborsClassifier
-classifier = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)
+# Fitting Logistic Regression to Training Set
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression()
 classifier.fit(X_train, y_train)
 
-# Predicting the Test set results
+# Predicting the Test Set Results
 y_pred = classifier.predict(X_test)
 
 # Making the Confusion Matrix
+# Confusion Matrix is to evaluate the accuracy of the prediction
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
@@ -56,3 +57,4 @@ accuracy = classifier.score(X_test, y_test)
 from sklearn.metrics import classification_report
 
 report = classification_report(y_test, y_pred)
+
