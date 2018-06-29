@@ -17,11 +17,11 @@ max_n1 = 14000
 min_n1 = 8000
 max_n2 = 12000
 
-head = ["Engine", "Time", "Air Temperature", "Exhaust Gas Temperature", "Fuel Flow", "Low Pressure Fan Speed (N1)", "High Pressure Rotor Speed (N2)", "EGT Normal", "Fuel Flow Normal", "N1 Normal", "N2 Normal", "Normal"]                       
+head = ["Engine", "Time", "Air Temperature", "Exhaust Gas Temperature", "Fuel Flow", "Low Pressure Fan Speed (N1)", "N1 Age", "High Pressure Rotor Speed (N2)", "N2 Age", "EGT Normal", "Fuel Flow Normal", "N1 Normal", "N2 Normal", "Normal"]                       
 engine_no = 0
 time = 0
 
-with open("engine_data.csv", "w") as csv_file :
+with open("engine_data_1.csv", "w") as csv_file :
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerows([head])
     
@@ -126,11 +126,16 @@ with open("engine_data.csv", "w") as csv_file :
             normal = False
         else :
             normal = True
+        
+        n1_age = int(np.random.uniform(1, 13))
+        n2_age = int(np.random.uniform(1, 13))
 
         body.append(str(egt))
         body.append(str(ff))
         body.append(str(n1))
+        body.append(str(n1_age))
         body.append(str(n2))
+        body.append(str(n2_age))
         body.append(str(egt_normal))
         body.append(str(ff_normal))
         body.append(str(n1_normal))

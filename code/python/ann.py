@@ -67,16 +67,16 @@ classifier.fit(X_train, y_train, batch_size = 100, nb_epoch = 100)
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
-y_pred = (y_pred > 0.5)
+#y_pred = (y_pred > 0.5)
+#
+## Making the Confusion Matrix
+#from sklearn.metrics import confusion_matrix
+#cm = confusion_matrix(y_test, y_pred)
+#
+#accuracy = classifier.evaluate(X_test, y_test)[1]
+#
+#from sklearn.metrics import classification_report
+#
+#report = classification_report(y_test, y_pred)
 
-# Making the Confusion Matrix
-from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_test, y_pred)
-
-accuracy = classifier.evaluate(X_test, y_test)[1]
-
-from sklearn.metrics import classification_report
-
-report = classification_report(y_test, y_pred)
-
-classifier.save('classifier.h5') # creates a HDF5 file 'my_model.h5'
+# classifier.save('classifier.h5') # creates a HDF5 file 'my_model.h5'
