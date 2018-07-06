@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.externals import joblib
 
 # Importing the dataset
-dataset = pd.read_csv('engine_data.csv')
+dataset = pd.read_csv('../../data/engine_data.csv')
 X = dataset.iloc[:, 1:6]
 y = dataset.iloc[:, [11]]
 
@@ -14,8 +14,8 @@ y = dataset.iloc[:, [11]]
 X_train = X.iloc[0:1800, :]
 X_test = X.iloc[1800:2400, :]
 
-y_train = y.iloc[0:1800, :]
-y_test = y.iloc[1800:2400, :]
+y_train = y.iloc[0:1800, :].values
+y_test = y.iloc[1800:2400, :].values
 
 # Encoding categorical data
 X_train_encode = X_train.values

@@ -9,7 +9,7 @@ prev_ff = 0
 prev_n1 = 0
 prev_n2 = 0
 
-with open("engine_data.csv", "w") as csv_file :
+with open("..engine_data.csv", "w") as csv_file :
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerows([head])
     
@@ -25,7 +25,7 @@ with open("engine_data.csv", "w") as csv_file :
             body[engine_no][month]['failure_prob'] = 0
 
             if month > 1:
-#                pdb.set_trace()
+                
                 prev_egt = body[engine_no][month - 1]['egt']
                 prev_ff = body[engine_no][month - 1]['ff']
                 prev_n1 = body[engine_no][month - 1]['n1']
