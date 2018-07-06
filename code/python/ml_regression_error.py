@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.externals import joblib
 
 # Importing the dataset
-normal_dataset = pd.read_csv('../../data/engine_data_normal.csv')
+normal_dataset = pd.read_csv('../../data/engine_data_error.csv')
 y_normal = normal_dataset['failure_prob'].values / 100
 dataset = pd.read_csv('../../data/engine_data_error.csv')
 X = dataset.iloc[:, 1:9]
@@ -72,12 +72,5 @@ plt.xlabel('Age (in months)')
 plt.ylabel('Probability of Failure')
 plt.show()
 
-# All Observations
-plt.figure(figsize=(100, 100))
-plt.plot(X_test['month'], y_p, color = 'blue')
-plt.xticks(np.arange(0, 24, 1))
-plt.yticks(np.arange(0, 1.05, 0.05))
-plt.title('Age (in months) vs Probability of Failure')
-plt.xlabel('Age (in months)')
-plt.ylabel('Probability of Failure')
-plt.show()
+print("Under normal conditions, the engine's life span would have been 5 years.")
+print("")
