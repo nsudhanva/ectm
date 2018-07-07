@@ -53,40 +53,46 @@ with open("../../data/engine_data_error_egt.csv", "w") as csv_file :
             
             if body[engine_no][month]['egt'] > 1750 :
                 body[engine_no][month]['egt_n'] = False
-                body[engine_no][month]['failure_prob'] += 1
+                body[engine_no][month]['failure_prob'] += 3
             else:
                 body[engine_no][month]['egt_n'] = True
             
-            if body[engine_no][month]['ff'] > 5350 :
-                body[engine_no][month]['ff_n'] = False
-                body[engine_no][month]['failure_prob'] += 1
-            else:
-                body[engine_no][month]['ff_n'] = True
-    
-            if body[engine_no][month]['n1'] > 13500 :
-                body[engine_no][month]['n1_n'] = False
-                body[engine_no][month]['failure_prob'] += 1
-            else:
-                body[engine_no][month]['n1_n'] = True            
-    
-            if body[engine_no][month]['n2'] > 11500 :
-                body[engine_no][month]['n2_n'] = False
-                body[engine_no][month]['failure_prob'] += 1
-            else:
-                body[engine_no][month]['n2_n'] = True
-                
-            if body[engine_no][month]['noise'] > 137 :
-                body[engine_no][month]['noise_n'] = False
-                body[engine_no][month]['failure_prob'] += 1
-            else:
-                body[engine_no][month]['noise_n'] = True
-                
-            if body[engine_no][month]['epr'] > 50 :
-                body[engine_no][month]['epr_n'] = False
-                body[engine_no][month]['failure_prob'] += 1
-            else:
-                body[engine_no][month]['epr_n'] = True
-                
+            body[engine_no][month]['ff_n'] = True
+            body[engine_no][month]['n1_n'] = True
+            body[engine_no][month]['n2_n'] = True
+            body[engine_no][month]['noise_n'] = True
+            body[engine_no][month]['epr_n'] = True
+            
+#            if body[engine_no][month]['ff'] > 5350 :
+#                body[engine_no][month]['ff_n'] = False
+#                body[engine_no][month]['failure_prob'] += 1
+#            else:
+#                body[engine_no][month]['ff_n'] = True
+#    
+#            if body[engine_no][month]['n1'] > 13500 :
+#                body[engine_no][month]['n1_n'] = False
+#                body[engine_no][month]['failure_prob'] += 1
+#            else:
+#                body[engine_no][month]['n1_n'] = True            
+#    
+#            if body[engine_no][month]['n2'] > 11500 :
+#                body[engine_no][month]['n2_n'] = False
+#                body[engine_no][month]['failure_prob'] += 1
+#            else:
+#                body[engine_no][month]['n2_n'] = True
+#                
+#            if body[engine_no][month]['noise'] > 137 :
+#                body[engine_no][month]['noise_n'] = False
+#                body[engine_no][month]['failure_prob'] += 1
+#            else:
+#                body[engine_no][month]['noise_n'] = True
+#                
+#            if body[engine_no][month]['epr'] > 50 :
+#                body[engine_no][month]['epr_n'] = False
+#                body[engine_no][month]['failure_prob'] += 1
+#            else:
+#                body[engine_no][month]['epr_n'] = True
+#                
             if body[engine_no][month]['egt_n'] == False or body[engine_no][month]['ff_n'] == False or body[engine_no][month]['n1_n'] == False or body[engine_no][month]['n2_n'] == False or body[engine_no][month]['noise_n'] == False or body[engine_no][month]['epr_n'] == False :
                 body[engine_no][month]['normal'] = False
             else :
