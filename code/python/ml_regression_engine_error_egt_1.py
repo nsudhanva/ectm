@@ -3,10 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.externals import joblib
 import pickle
 
 # Importing the dataset
-dataset = pd.read_csv('../../data/engine_data_error_egt.csv')
+dataset = pd.read_csv('../../data/engine_data_error_egt_1.csv')
 X_data = dataset.iloc[:, 1:9]
 y_data = dataset.iloc[:, [16]]
 
@@ -31,33 +32,32 @@ for category in categories:
 
 X = np.delete(X, dummies, 1)
 
-# Splitting dataset into Training and Test Set
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, shuffle = False)
-
-# Fitting Multiple Linear Regression to the Training Set
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(X_train, y_train)
-
-# Predicting the Test Set results
+# Loading and fitting the regression model
+with open('mlr_egt.pkl', 'rb') as f:
+    regressor = pickle.load(f)
+    
 y_pred = regressor.predict(X)
+
 y_pred[y_pred > 1] = 1
 y_pred[y_pred < 0] = 0
-# y_pred = y_pred.ravel()
-# y_p = np.abs(y_pred) / 100
-
-# Saving the model
-with open('mlr_egt.pkl', 'wb') as f:
-    pickle.dump(regressor, f)
 
 # Visualising the results
-# First Observation
-plt.plot(X_data['month'][0:60], y_test[0:60], color = 'red')
-plt.plot(X_data['month'][0:60], y_pred[0:60], color = 'blue')
+
+normal_dataset = pd.read_csv('../../data/engine_data_normal.csv')
+y_normal = normal_dataset.loc[:, 'failure_prob'].values
+y_normal[y_normal > 1] = 1
+y_normal = y_normal / 100
+
+plt.plot(X_data['month'][0:60], y_normal[0:60], color = 'green', linestyle='-', marker='.', label='Age')
+plt.plot(X_data['month'][0:60], y_pred[0:60], color = 'blue', linestyle='-', marker='.', label='Probability')
+plt.axvline(x=np.where(y_pred==1)[0][0], color='red', label='Predicted Failure Month')
+plt.axvline(x=np.where(y_normal==1)[0][0], color='orange', label='Normal Failure Month')        
 plt.xticks(np.arange(0, 61, 2))
 plt.yticks(np.arange(0, 1.05, 0.05))
 plt.title('Age (in months) vs Probability of Failure')
+plt.legend(loc='best')
 plt.xlabel('Age (in months)')
 plt.ylabel('Probability of Failure')
 plt.show()
+
+print('Engine will fail by month ' + str(np.where(y_pred==1)[0][0]) + '. It should have survived for ' + str(np.where(y_normal==1)[0][0]) + 'months.')
