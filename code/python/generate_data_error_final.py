@@ -13,7 +13,7 @@ with open("../../data/engine_data_error_final.csv", "w") as csv_file :
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerows([head])
     
-    for engine_no in range(1, 101):
+    for engine_no in range(1, 1001):
     
         body[engine_no] = {}
         
@@ -114,5 +114,4 @@ with open("../../data/engine_data_error_final.csv", "w") as csv_file :
             body_w.append(str(body[engine_no][month]['failure_prob']))
             
             writer.writerows([body_w])
-            
             
