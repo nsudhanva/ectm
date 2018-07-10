@@ -14,6 +14,7 @@ X = X_data.values
 y = y_data.values
 
 y = y/100
+
 # Encoding categorical data
 labelencoder_X = LabelEncoder()
 X[:, 0] = labelencoder_X.fit_transform(X[:, 0])
