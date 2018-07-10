@@ -60,4 +60,4 @@ plt.xlabel('Age (in months)')
 plt.ylabel('Probability of Failure')
 plt.show()
 
-print('Engine will fail by month ' + str(np.where(y_pred==1)[0][0]) + '. It should have survived for ' + str(np.where(y_normal==1)[0][0]) + 'months.')
+print('Engine will fail by month ' + str(np.where(y_pred==1)[0][0]) + '. It should have survived for ' + str(np.where(y_normal==1)[0][0]) + ' months.')
