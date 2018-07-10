@@ -45,8 +45,8 @@ y_pred[y_pred < 0] = 0
 
 normal_dataset = pd.read_csv('../../data/engine_data_normal.csv')
 y_normal = normal_dataset.loc[:, 'failure_prob'].values
-y_normal[y_normal > 1] = 1
 y_normal = y_normal / 100
+y_normal[y_normal > 1] = 1
 
 plt.plot(X_data['month'][0:60], y_normal[0:60], color = 'green', linestyle='-', marker='.', label='Age')
 plt.plot(X_data['month'][0:60], y_pred[0:60], color = 'blue', linestyle='-', marker='.', label='Probability')
