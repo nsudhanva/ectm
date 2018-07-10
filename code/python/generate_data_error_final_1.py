@@ -9,7 +9,7 @@ prev_ff = 0
 prev_n1 = 0
 prev_n2 = 0
 
-with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
+with open("../../data/engine_data_error_final_1.csv", "w") as csv_file :
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerows([head])
     
@@ -33,7 +33,7 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
             
             body[engine_no][month]['air_temp'] = np.random.randint(-15, 1)
             
-            if month <= 36:
+            if month <= 25:
                 body[engine_no][month]['epr'] = np.random.randint(48, 51)
             else:
                 body[engine_no][month]['epr'] = np.random.randint(49, 53)
@@ -55,11 +55,11 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
                 body[engine_no][month]['fp_n1'] = body[engine_no][month-1]['fp_n1']
                 body[engine_no][month]['fp_n2'] = body[engine_no][month-1]['fp_n2']
                 
-                body[engine_no][month]['egt'] = 1300 + np.random.randint((month-1)*11, month*11)
-                body[engine_no][month]['ff'] = 5000 + np.random.randint((month-1)*9, month*9)
-                body[engine_no][month]['n1'] = 12000 + np.random.randint((month-1)*35, month*35)
-                body[engine_no][month]['n2'] = 10000 + np.random.randint((month-1)*35, month*35)
-                body[engine_no][month]['noise'] = int(130 + month*0.2)
+                body[engine_no][month]['noise'] = int(130 + month*0.4)
+                body[engine_no][month]['egt'] = 1300 + np.random.randint((month-1)*20, month*20)
+                body[engine_no][month]['ff'] = 5000 + np.random.randint((month-1)*16, month*16)
+                body[engine_no][month]['n1'] = 12000 + np.random.randint((month-1)*54, month*54)
+                body[engine_no][month]['n2'] = 10000 + np.random.randint((month-1)*54, month*54)
             
             if body[engine_no][month]['egt'] > 1740 :
                 body[engine_no][month]['fp_egt'] += np.random.randint(5, 7)
@@ -78,7 +78,7 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
                 
             if body[engine_no][month]['epr'] > 50 :
                 body[engine_no][month]['fp_epr'] += np.random.randint(9, 12)                
-                            
+            
             if body[engine_no][month]['failure_prob'] > 100:
                 body[engine_no][month]['failure_prob'] = 100
             if body[engine_no][month]['fp_noise'] > 100:
