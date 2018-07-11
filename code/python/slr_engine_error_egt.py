@@ -21,7 +21,7 @@ regressor.fit(X_train, y_train)
 
 # Predicting the results
 y_pred = regressor.predict(X_test)
-y_pred = np.around(y_pred / 100, 2)
+y_pred = y_pred / 100
 y_pred[y_pred > 1] = 1
 y_pred[y_pred < 0] = 0
 

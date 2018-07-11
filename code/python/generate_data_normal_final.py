@@ -54,11 +54,11 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
                 prev_n1 = body[engine_no][month-1]['n1']
                 prev_n2 = body[engine_no][month-1]['n2']
                 
-                body[engine_no][month]['noise'] = round(prev_noise + np.random.uniform(0.22, 0.24), 2)
-                body[engine_no][month]['egt'] = prev_egt + np.random.randint(19, 22)
-                body[engine_no][month]['ff'] = prev_ff + np.random.randint(16, 18)
-                body[engine_no][month]['n1'] = prev_n1 + np.random.randint(65, 68)
-                body[engine_no][month]['n2'] = prev_n2 + np.random.randint(65, 68)
+                body[engine_no][month]['noise'] = round(prev_noise + np.random.uniform(0.05, 0.4), 2)
+                body[engine_no][month]['egt'] = prev_egt + np.random.randint(18, 23)
+                body[engine_no][month]['ff'] = prev_ff + np.random.randint(15, 19)
+                body[engine_no][month]['n1'] = prev_n1 + np.random.randint(60, 73)
+                body[engine_no][month]['n2'] = prev_n2 + np.random.randint(60, 73)
             
             if body[engine_no][month]['noise'] > 137 :
                 body[engine_no][month]['fp_noise'] += round(np.random.uniform(3.2, 3.8), 2)
