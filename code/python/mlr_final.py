@@ -169,6 +169,6 @@ plt.show()
 # Writing output to a new csv file
 
 output_df = pd.DataFrame()
-output_df['components'] = ['noise', 'egt', 'ff', 'n1', 'n2']
-output_df['actual'] = [str(np.where(X_normal['fp_noise'].values==100)[0][0]), str(np.where(X_normal['fp_egt'].values==100)[0][0]), str(np.where(X_normal['fp_ff'].values==100)[0][0]), str(np.where(X_normal['fp_n1'].values==100)[0][0]), str(np.where(X_normal['fp_n2'].values==100)[0][0])]            
-output_df['predicted'] = [str(np.where(y_pred_noise==100)[0][0]), str(np.where(y_pred_egt==100)[0][0]), str(np.where(y_pred_ff==100)[0][0]), str(np.where(y_pred_n1==100)[0][0]), str(np.where(y_pred_n2==100)[0][0])]                 
+output_df['Components'] = ['Fan Blades', 'Turbine', 'Fuel Filter', 'Low Pressure Fan (N1)', 'High Pressure Rotor (N2)']
+output_df['Actual life span under normal conditions(in months)'] = [str(np.where(X_normal['fp_noise'].values==100)[0][0]), str(np.where(X_normal['fp_egt'].values==100)[0][0]), str(np.where(X_normal['fp_ff'].values==100)[0][0]), str(np.where(X_normal['fp_n1'].values==100)[0][0]), str(np.where(X_normal['fp_n2'].values==100)[0][0])]            
+output_df['Predicted life span after sudden increase(in months)'] = [str(np.where(y_pred_noise==100)[0][0]), str(np.where(y_pred_egt==100)[0][0]), str(np.where(y_pred_ff==100)[0][0]), str(np.where(y_pred_n1==100)[0][0]), str(np.where(y_pred_n2==100)[0][0])]  
