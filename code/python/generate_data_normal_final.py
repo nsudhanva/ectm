@@ -54,26 +54,26 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
                 prev_n1 = body[engine_no][month-1]['n1']
                 prev_n2 = body[engine_no][month-1]['n2']
                 
-                body[engine_no][month]['noise'] = round(prev_noise + np.random.uniform(0.05, 0.4), 2)
-                body[engine_no][month]['egt'] = prev_egt + np.random.randint(18, 23)
-                body[engine_no][month]['ff'] = prev_ff + np.random.randint(15, 19)
-                body[engine_no][month]['n1'] = prev_n1 + np.random.randint(60, 73)
-                body[engine_no][month]['n2'] = prev_n2 + np.random.randint(60, 73)
+                body[engine_no][month]['noise'] = round(prev_noise + np.random.uniform(0.2, 0.25), 2)
+                body[engine_no][month]['egt'] = prev_egt + np.random.randint(18, 24)
+                body[engine_no][month]['ff'] = prev_ff + np.random.randint(16, 20)
+                body[engine_no][month]['n1'] = prev_n1 + np.random.randint(62, 75)
+                body[engine_no][month]['n2'] = prev_n2 + np.random.randint(62, 75)
             
             if body[engine_no][month]['noise'] > 137 :
-                body[engine_no][month]['fp_noise'] += round(np.random.uniform(3.2, 3.8), 2)
+                body[engine_no][month]['fp_noise'] = (body[engine_no][month]['noise'] - 137)/0.06
                 
             if body[engine_no][month]['egt'] > 1900 :
-                body[engine_no][month]['fp_egt'] += round(np.random.uniform(3.2, 3.8), 2)
+                body[engine_no][month]['fp_egt'] = (body[engine_no][month]['egt'] - 1900)/6
                 
             if body[engine_no][month]['ff'] > 5500 :
-                body[engine_no][month]['fp_ff'] += round(np.random.uniform(3.2, 3.8), 2)
+                body[engine_no][month]['fp_ff'] = (body[engine_no][month]['ff']-5500)/5
     
             if body[engine_no][month]['n1'] > 14000 :
-                body[engine_no][month]['fp_n1'] += round(np.random.uniform(3.2, 3.8), 2)         
+                body[engine_no][month]['fp_n1'] = (body[engine_no][month]['n1']-14000)/20         
     
             if body[engine_no][month]['n2'] > 12000 :
-                body[engine_no][month]['fp_n2'] += round(np.random.uniform(3.2, 3.8), 2)
+                body[engine_no][month]['fp_n2'] = (body[engine_no][month]['n2']-12000)/20
 
             if body[engine_no][month]['fp_noise'] > 100:
                 body[engine_no][month]['fp_noise'] = 100

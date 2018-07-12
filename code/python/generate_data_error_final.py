@@ -61,19 +61,19 @@ with open("../../data/engine_data_error_final.csv", "w") as csv_file :
                 body[engine_no][month]['n2'] = prev_n2 + np.random.randint(102, 106)
             
             if body[engine_no][month]['noise'] > 137 :
-                body[engine_no][month]['fp_noise'] += round(np.random.uniform(6.4, 7.6), 2)
+                body[engine_no][month]['fp_noise'] = (body[engine_no][month]['noise'] - 137)/0.06
                 
             if body[engine_no][month]['egt'] > 1900 :
-                body[engine_no][month]['fp_egt'] += round(np.random.uniform(6.4, 7.6), 2)
+                body[engine_no][month]['fp_egt'] = (body[engine_no][month]['egt'] - 1900)/6
                 
             if body[engine_no][month]['ff'] > 5500 :
-                body[engine_no][month]['fp_ff'] += round(np.random.uniform(6.4, 7.6), 2)
+                body[engine_no][month]['fp_ff'] = (body[engine_no][month]['ff']-5500)/5
     
             if body[engine_no][month]['n1'] > 14000 :
-                body[engine_no][month]['fp_n1'] += round(np.random.uniform(6.4, 7.6), 2)         
+                body[engine_no][month]['fp_n1'] = (body[engine_no][month]['n1']-14000)/20         
     
             if body[engine_no][month]['n2'] > 12000 :
-                body[engine_no][month]['fp_n2'] += round(np.random.uniform(6.4, 7.6), 2)
+                body[engine_no][month]['fp_n2'] = (body[engine_no][month]['n2']-12000)/20
             
             if body[engine_no][month]['fp_noise'] > 100:
                 body[engine_no][month]['fp_noise'] = 100

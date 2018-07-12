@@ -6,10 +6,10 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.linear_model import LinearRegression
 import pickle
 import csv
-import generate_final_data # this is to generate data
+import generate_mlr_final_data # this is to generate data
 
 # Importing the dataset
-dataset = pd.read_csv('../../data/final_data.csv')
+dataset = pd.read_csv('../../data/mlr_final_data.csv')
 
 # ==================================
 
@@ -229,7 +229,7 @@ y_pred[y_pred < 0] = 0
 dataset['failure_prob'] = list(y_pred.astype(int).ravel())
 
 # Writing to csv file
-dataset.to_csv('../../data/final_data.csv', index=False)
+dataset.to_csv('../../data/mlr_final_data.csv', index=False)
 
 # ==================================
 
@@ -238,7 +238,7 @@ normal_dataset = pd.read_csv('../../data/engine_data_normal_final.csv')
 X_normal = normal_dataset
 y_normal = normal_dataset.loc[:, 'failure_prob'].values
 y_normal = y_normal / 100
-y_normal[y_normal > 0.98] = 1
+y_normal[y_normal > 1] = 1
 
 # Converting probability from 0-100 to 0-1
 y_pred = y_pred / 100
@@ -259,6 +259,8 @@ plt.show()
 # Writing output to a new csv file
 
 output_df = pd.DataFrame()
-output_df['Components'] = ['Fan Blades', 'Turbine', 'Fuel Filter', 'Low Pressure Fan (N1)', 'High Pressure Rotor (N2)']
-output_df['Actual life span under normal conditions(in months)'] = [str(np.where(X_normal['fp_noise'].values==100)[0][0]), str(np.where(X_normal['fp_egt'].values==100)[0][0]), str(np.where(X_normal['fp_ff'].values==100)[0][0]), str(np.where(X_normal['fp_n1'].values==100)[0][0]), str(np.where(X_normal['fp_n2'].values==100)[0][0])]            
-output_df['Predicted life span after sudden increase(in months)'] = [str(np.where(y_pred_noise==100)[0][0]), str(np.where(y_pred_egt==100)[0][0]), str(np.where(y_pred_ff==100)[0][0]), str(np.where(y_pred_n1==100)[0][0]), str(np.where(y_pred_n2==100)[0][0])]  
+output_df['Components'] = ['Fan Blades', 'EGT', 'Fuel Flow', 'Low Pressure Fan (N1)', 'High Pressure Rotor (N2)', 'Turbine']
+output_df['Actual life span under normal conditions(in months)'] = [str(np.where(X_normal['fp_noise'].values==100)[0][0]), str(np.where(X_normal['fp_egt'].values==100)[0][0]), str(np.where(X_normal['fp_ff'].values==100)[0][0]), str(np.where(X_normal['fp_n1'].values==100)[0][0]), str(np.where(X_normal['fp_n2'].values==100)[0][0]), str(np.where(X_normal['failure_prob'].values==100)[0][0]+1)]            
+output_df['Predicted life span after sudden increase(in months)'] = [str(np.where(y_pred_noise==100)[0][0]), str(np.where(y_pred_egt==100)[0][0]), str(np.where(y_pred_ff==100)[0][0]), str(np.where(y_pred_n1==100)[0][0]), str(np.where(y_pred_n2==100)[0][0]), str(np.where(y_pred==1)[0][0])]  
+output_df['Actual value under normal conditions'] = [str(np.where(X_normal['fp_noise'].values==100)[0][0]), str(np.where(X_normal['fp_egt'].values==100)[0][0]), str(np.where(X_normal['fp_ff'].values==100)[0][0]), str(np.where(X_normal['fp_n1'].values==100)[0][0]), str(np.where(X_normal['fp_n2'].values==100)[0][0]), str(np.where(X_normal['failure_prob'].values==100)[0][0]+1)]            
+output_df['Predicted value after sudden increase'] = [str(np.where(X_normal['fp_noise'].values==100)[0][0]), str(np.where(X_normal['fp_egt'].values==100)[0][0]), str(np.where(X_normal['fp_ff'].values==100)[0][0]), str(np.where(X_normal['fp_n1'].values==100)[0][0]), str(np.where(X_normal['fp_n2'].values==100)[0][0]), str(np.where(X_normal['failure_prob'].values==100)[0][0]+1)]            

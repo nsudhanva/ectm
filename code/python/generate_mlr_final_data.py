@@ -9,7 +9,7 @@ prev_ff = 0
 prev_n1 = 0
 prev_n2 = 0
 
-with open("../../data/final_data.csv", "w") as csv_file :
+with open("../../data/mlr_final_data.csv", "w") as csv_file :
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerows([head])
     
