@@ -10,7 +10,7 @@ import pickle
 # Importing the dataset
 dataset = pd.read_csv('../../data/engine_data_error_final.csv')
 
-X = dataset.iloc[:, 1:15].values
+X = dataset.iloc[:, 1:13].values
 y = dataset.loc[:, ['failure_prob']].values
 
 # Encoding categorical data
@@ -39,8 +39,7 @@ regressor.fit(X_train, y_train)
 
 # Predicting the results
 y_pred = regressor.predict(X_test)
-y_pred = y_pred / 100
-y_pred[y_pred > 1] = 1
+y_pred[y_pred > 100] = 100
 y_pred[y_pred < 0] = 0
 
 # Saving the model

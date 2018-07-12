@@ -12,7 +12,7 @@ import csv
 dataset = pd.read_csv('../../data/engine_data_error_final.csv')
 
 X = dataset.loc[:, ['month', 'noise']].values
-y = dataset.iloc[:, 10:11].values
+y = dataset.loc[:, ['fp_noise']].values
 
 # Encoding categorical data
 labelencoder_X = LabelEncoder()
