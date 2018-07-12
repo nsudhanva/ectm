@@ -9,7 +9,7 @@ import csv
 import generate_final_data # this is to generate data
 
 # Importing the dataset
-dataset = pd.read_csv('../../data/engine_final.csv')
+dataset = pd.read_csv('../../data/final_data.csv')
 
 # ==================================
 
@@ -17,8 +17,25 @@ dataset = pd.read_csv('../../data/engine_final.csv')
 #               noise
 # ==================================
 
-X_noise_data = dataset.iloc[:, 3:4]
+X_noise_data = dataset.loc[:, ['month', 'noise']]
 X_noise = X_noise_data.values
+
+# Encoding categorical data
+labelencoder_X_noise = LabelEncoder()
+X_noise[:, 0] = labelencoder_X_noise.fit_transform(X_noise[:, 0])
+onehotencoder = OneHotEncoder(categorical_features = [0])
+X_noise = onehotencoder.fit_transform(X_noise).toarray()
+
+# Avoiding dummy variable trap
+categories = [0]
+dummies = []
+dummies_sum = 0
+
+for category in categories:
+    dummies_sum += (dataset.iloc[:, category].unique().size) * category
+    dummies.append(dummies_sum)
+
+X_noise = np.delete(X, dummies, 1)
 
 # Loading and fitting the regression model
 with open('slr_noise.pkl', 'rb') as f:
