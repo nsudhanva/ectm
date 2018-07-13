@@ -242,6 +242,7 @@ y_normal[y_normal > 1] = 1
 
 # Converting probability from 0-100 to 0-1
 y_pred = y_pred / 100
+y_pred[month:61] = 1
 
 # Plotting graph
 plt.plot(X_data['month'][0:60], y_normal[0:60], color = 'green', linestyle='-', marker='.', label='Age under normal conditions')

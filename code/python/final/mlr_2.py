@@ -247,7 +247,7 @@ y_pred[month:61] = 1
 # Plotting graph
 plt.plot(X_data['month'][0:60], y_normal[0:60], color = 'green', linestyle='-', marker='.', label='Age under normal conditions')
 plt.plot(X_data['month'][0:60], y_pred.ravel(), color = 'blue', linestyle='-', marker='.', label='Predicted age under abnormal conditions')
-plt.axvline(x=month+1, color='red', label='Predicted Failure Month')
+plt.axvline(x=month, color='red', label='Predicted Failure Month')
 plt.axvline(x=np.where(y_normal==1)[0][0]+1, color='orange', label='Normal Failure Month')        
 plt.xticks(np.arange(1, 62, 2))
 plt.yticks(np.arange(0, 1.05, 0.05))

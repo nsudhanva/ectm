@@ -46,7 +46,7 @@ with open("../../../data/final/9.csv", "w") as csv_file :
                 prev_n1 = body[engine_no][month-1]['n1']
                 prev_n2 = body[engine_no][month-1]['n2']
                 
-                if month == 6 :
+                if month == 22 :
                     
                     body[engine_no][month]['noise'] = round(prev_noise + np.random.uniform(0.15, 0.8), 2)
                     body[engine_no][month]['egt'] = np.random.randint(prev_egt+200, 2700)

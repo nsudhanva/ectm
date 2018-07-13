@@ -222,7 +222,7 @@ with open('mlr_all.pkl', 'rb') as f:
     
 # Predicting the results
 y_pred = regressor.predict(X)
-y_pred[y_pred > 100] = 100
+y_pred[y_pred > 99] = 100
 y_pred[y_pred < 0] = 0
 month = np.where(y_pred==100)[0][0]
 
