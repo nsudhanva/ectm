@@ -9,7 +9,7 @@ prev_ff = 0
 prev_n1 = 0
 prev_n2 = 0
 
-with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
+with open("../../../data/final/7.csv", "w") as csv_file :
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerows([head])
     
@@ -29,7 +29,7 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
             body[engine_no][month]['fp_n1'] = 0
             body[engine_no][month]['fp_n2'] = 0
             body[engine_no][month]['failure_prob'] = 0
-                
+                            
             if month == 1:
                 
                 body[engine_no][month]['noise'] = 130
@@ -40,23 +40,27 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
                 
             else:
                 
-                body[engine_no][month]['fp_noise'] = body[engine_no][month-1]['fp_noise']
-                body[engine_no][month]['fp_egt'] = body[engine_no][month-1]['fp_egt']
-                body[engine_no][month]['fp_ff'] = body[engine_no][month-1]['fp_ff']
-                body[engine_no][month]['fp_n1'] = body[engine_no][month-1]['fp_n1']
-                body[engine_no][month]['fp_n2'] = body[engine_no][month-1]['fp_n2']
-                
                 prev_noise = body[engine_no][month-1]['noise']
                 prev_egt = body[engine_no][month-1]['egt']
                 prev_ff = body[engine_no][month-1]['ff']
                 prev_n1 = body[engine_no][month-1]['n1']
                 prev_n2 = body[engine_no][month-1]['n2']
                 
-                body[engine_no][month]['noise'] = round(prev_noise + np.random.uniform(0.2, 0.25), 2)
-                body[engine_no][month]['egt'] = prev_egt + np.random.randint(18, 24)
-                body[engine_no][month]['ff'] = prev_ff + np.random.randint(16, 20)
-                body[engine_no][month]['n1'] = prev_n1 + np.random.randint(62, 75)
-                body[engine_no][month]['n2'] = prev_n2 + np.random.randint(62, 75)
+                if month == 16 :
+                    
+                    body[engine_no][month]['noise'] = round(prev_noise + np.random.uniform(0.15, 0.8), 2)
+                    body[engine_no][month]['egt'] = prev_egt + np.random.randint(40, 45)
+                    body[engine_no][month]['ff'] = np.random.randint(prev_ff+100, 5800)
+                    body[engine_no][month]['n1'] = prev_n1 + np.random.randint(99, 106)
+                    body[engine_no][month]['n2'] = np.random.randint(prev_n2+300, 13000)
+                    
+                else :
+                    
+                    body[engine_no][month]['noise'] = round(prev_noise + np.random.uniform(0.15, 0.8), 2)
+                    body[engine_no][month]['egt'] = prev_egt + np.random.randint(40, 45)
+                    body[engine_no][month]['ff'] = prev_ff + np.random.randint(37, 42)
+                    body[engine_no][month]['n1'] = prev_n1 + np.random.randint(99, 106)
+                    body[engine_no][month]['n2'] = prev_n2 + np.random.randint(102, 106)
             
             if body[engine_no][month]['noise'] > 137 :
                 body[engine_no][month]['fp_noise'] = (body[engine_no][month]['noise'] - 137)/0.06
@@ -72,7 +76,7 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
     
             if body[engine_no][month]['n2'] > 12000 :
                 body[engine_no][month]['fp_n2'] = (body[engine_no][month]['n2']-12000)/20
-
+            
             if body[engine_no][month]['fp_noise'] > 100:
                 body[engine_no][month]['fp_noise'] = 100
             if body[engine_no][month]['fp_egt'] > 100:
@@ -86,7 +90,7 @@ with open("../../data/engine_data_normal_final.csv", "w") as csv_file :
             if body[engine_no][month]['failure_prob'] > 100:
                 body[engine_no][month]['failure_prob'] = 100
 
-            body[engine_no][month]['failure_prob'] = round((body[engine_no][month]['fp_noise'] + body[engine_no][month]['fp_egt'] + body[engine_no][month]['fp_ff'] + body[engine_no][month]['fp_n1'] + body[engine_no][month]['fp_n2']) / 5, 2)   
+            body[engine_no][month]['failure_prob'] = int((body[engine_no][month]['fp_noise'] + body[engine_no][month]['fp_egt'] + body[engine_no][month]['fp_ff'] + body[engine_no][month]['fp_n1'] + body[engine_no][month]['fp_n2']) / 5)       
 
             body_w.append(str(engine_no))
             body_w.append(str(month))

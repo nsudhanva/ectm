@@ -6,10 +6,9 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.linear_model import LinearRegression
 import pickle
 import csv
-import generate_mlr_final_data # this is to generate data
 
 # Importing the dataset
-dataset = pd.read_csv('../../data/mlr_final_data.csv')
+dataset = pd.read_csv('../../../data/final/10.csv')
 
 # ==================================
 
@@ -223,18 +222,19 @@ with open('mlr_all.pkl', 'rb') as f:
     
 # Predicting the results
 y_pred = regressor.predict(X)
-y_pred[y_pred > 100] = 100
+y_pred[y_pred > 99] = 100
 y_pred[y_pred < 0] = 0
+month = np.where(y_pred==100)[0][0]
 
 dataset['failure_prob'] = list(y_pred.astype(int).ravel())
 
 # Writing to csv file
-dataset.to_csv('../../data/mlr_final_data.csv', index=False)
+dataset.to_csv('../../../data/final/10.csv', index=False)
 
 # ==================================
 
 # Importing normal dataset
-normal_dataset = pd.read_csv('../../data/engine_data_normal_final.csv')
+normal_dataset = pd.read_csv('../../../data/engine_data_normal_final.csv')
 X_normal = normal_dataset
 y_normal = normal_dataset.loc[:, 'failure_prob'].values
 y_normal = y_normal / 100
@@ -242,11 +242,12 @@ y_normal[y_normal > 1] = 1
 
 # Converting probability from 0-100 to 0-1
 y_pred = y_pred / 100
+y_pred[month:61] = 1
 
 # Plotting graph
 plt.plot(X_data['month'][0:60], y_normal[0:60], color = 'green', linestyle='-', marker='.', label='Age under normal conditions')
 plt.plot(X_data['month'][0:60], y_pred.ravel(), color = 'blue', linestyle='-', marker='.', label='Predicted age under abnormal conditions')
-plt.axvline(x=np.where(y_pred==1)[0][0]+1, color='red', label='Predicted Failure Month')
+plt.axvline(x=month+1, color='red', label='Predicted Failure Month')
 plt.axvline(x=np.where(y_normal==1)[0][0]+1, color='orange', label='Normal Failure Month')        
 plt.xticks(np.arange(1, 62, 2))
 plt.yticks(np.arange(0, 1.05, 0.05))

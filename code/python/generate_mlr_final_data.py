@@ -2,7 +2,7 @@ import numpy as np
 import csv
 import pdb
 
-head = ["engine", "month", "air_temp", "noise", "egt", "ff", "n1", "n2", "fp_noise", "fp_egt", "fp_ff", "fp_n1", "fp_n2", "failure_prob"]                
+head = ["engine", "month", "noise", "egt", "ff", "n1", "n2", "fp_noise", "fp_egt", "fp_ff", "fp_n1", "fp_n2", "failure_prob"]                
 body = {}
 prev_egt = 0
 prev_ff = 0
@@ -22,8 +22,6 @@ with open("../../data/mlr_final_data.csv", "w") as csv_file :
             body_w = []
             
             body[engine_no][month] = {}
-            
-            body[engine_no][month]['air_temp'] = np.random.randint(-15, 1)
             
             body[engine_no][month]['fp_noise'] = 0
             body[engine_no][month]['fp_egt'] = 0
@@ -56,7 +54,6 @@ with open("../../data/mlr_final_data.csv", "w") as csv_file :
 
             body_w.append(str(engine_no))
             body_w.append(str(month))
-            body_w.append(str(body[engine_no][month]['air_temp']))
             body_w.append(str(body[engine_no][month]['noise']))
             body_w.append(str(body[engine_no][month]['egt']))
             body_w.append(str(body[engine_no][month]['ff']))

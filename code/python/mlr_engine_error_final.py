@@ -10,7 +10,7 @@ import pickle
 # Importing the dataset
 dataset = pd.read_csv('../../data/engine_data_error_final.csv')
 
-X = dataset.iloc[:, 1:13].values
+X = dataset.iloc[:, 1:12].values
 y = dataset.loc[:, ['failure_prob']].values
 
 # Encoding categorical data
