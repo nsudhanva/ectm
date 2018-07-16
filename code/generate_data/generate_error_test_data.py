@@ -61,32 +61,32 @@ for engine in range(1, 11):
     n2 = np.insert(n2, 0, start_n2)
     n2[random_month:] += random_n2_increase
     
-    noise_index = np.where(noise >= max_noise)[0][0]
-    fp_noise[noise_index: ] = (noise[noise_index:] - max_noise) / 0.06
-    fp_noise = fp_noise/100
-    fp_noise[fp_noise > 1] = 1
-    
-    egt_index = np.where(egt >= max_egt)[0][0]
-    fp_egt[egt_index: ] = (egt[egt_index:] - max_egt) / 6
-    fp_egt = fp_egt/100
-    fp_egt[fp_egt > 1] = 1
-    
-    ff_index = np.where(ff >= max_ff)[0][0]
-    fp_ff[ff_index: ] = (ff[ff_index:] - max_ff) / 5
-    fp_ff = fp_ff/100
-    fp_ff[fp_ff > 1] = 1
-    
-    n1_index = np.where(n1 >= max_n1)[0][0]
-    fp_n1[n1_index: ] = (n1[n1_index:] - max_n1) / 20
-    fp_n1 = fp_n1/100
-    fp_n1[fp_n1 > 1] = 1
-    
-    n2_index = np.where(n2 >= max_n2)[0][0]
-    fp_n2[n2_index: ] = (n2[n2_index:] - max_n2) / 20
-    fp_n2 = fp_n2/100
-    fp_n2[fp_n2 > 1] = 1
-    
-    total_fp = (fp_noise + fp_egt + fp_ff + fp_n1 + fp_n2) / 5
+#    noise_index = np.where(noise >= max_noise)[0][0]
+#    fp_noise[noise_index: ] = (noise[noise_index:] - max_noise) / 0.06
+#    fp_noise = fp_noise/100
+#    fp_noise[fp_noise > 1] = 1
+#    
+#    egt_index = np.where(egt >= max_egt)[0][0]
+#    fp_egt[egt_index: ] = (egt[egt_index:] - max_egt) / 6
+#    fp_egt = fp_egt/100
+#    fp_egt[fp_egt > 1] = 1
+#    
+#    ff_index = np.where(ff >= max_ff)[0][0]
+#    fp_ff[ff_index: ] = (ff[ff_index:] - max_ff) / 5
+#    fp_ff = fp_ff/100
+#    fp_ff[fp_ff > 1] = 1
+#    
+#    n1_index = np.where(n1 >= max_n1)[0][0]
+#    fp_n1[n1_index: ] = (n1[n1_index:] - max_n1) / 20
+#    fp_n1 = fp_n1/100
+#    fp_n1[fp_n1 > 1] = 1
+#    
+#    n2_index = np.where(n2 >= max_n2)[0][0]
+#    fp_n2[n2_index: ] = (n2[n2_index:] - max_n2) / 20
+#    fp_n2 = fp_n2/100
+#    fp_n2[fp_n2 > 1] = 1
+#    
+#    total_fp = (fp_noise + fp_egt + fp_ff + fp_n1 + fp_n2) / 5
     
     df['noise'] = noise
     df['egt'] = egt
