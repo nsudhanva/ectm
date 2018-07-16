@@ -9,7 +9,7 @@ import pickle
 import csv
 
 # Importing the dataset
-dataset = pd.read_csv('../data/error_train_data.csv')
+dataset = pd.read_csv('../../data/train_data/error_train_data.csv')
 
 X = dataset.loc[:, ['month', 'noise']].values
 y = dataset.loc[:, ['fp_noise']].values
@@ -44,6 +44,6 @@ y_pred[y_pred > 0.99] = 1
 y_pred[y_pred < 0] = 0
 
 # Saving the model
-with open('noise.pkl', 'wb') as f:
+with open('../models/noise.pkl', 'wb') as f:
     pickle.dump(regressor, f)
     
