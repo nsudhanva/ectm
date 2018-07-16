@@ -234,6 +234,7 @@ y_normal = normal_dataset.loc[:, 'total_fp'].values
 y_normal[y_normal > 1] = 1
 
 # Plotting graph
+plt.figure(figsize=(20, 15))
 plt.plot(X_data['month'][0:60], y_normal[0:60], color = 'green', linestyle='-', marker='.', label='Age under normal conditions')
 plt.plot(X_data['month'][0:60], y_pred.ravel(), color = 'blue', linestyle='-', marker='.', label='Predicted age under abnormal conditions')
 plt.axvline(x=np.where(y_pred==1)[0][0]+1, color='red', label='Predicted Failure Month')
@@ -245,6 +246,7 @@ plt.legend(loc='best')
 plt.xlabel('Age (in months)')
 plt.ylabel('Probability of Failure')
 plt.show()
+plt.savefig('../../outputs/test_2.png')
 
 # Writing output to a new csv file
 
