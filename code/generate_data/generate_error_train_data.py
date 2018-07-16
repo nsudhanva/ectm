@@ -18,7 +18,7 @@ max_n2 = 12000
 
 df = pd.DataFrame(columns=head)
 
-for engine in range(1, 1001):
+for engine in range(1, 201):
 
     months = np.arange(1, 61)
     
@@ -29,11 +29,17 @@ for engine in range(1, 1001):
     fp_n2 = np.zeros(60)
     total_fp = np.zeros(60)
     
-    range_noise = np.random.uniform(0.3, 0.35, size=59)
-    range_egt = np.random.randint(25, 31, size=59)
-    range_ff = np.random.randint(20, 24, size=59)
-    range_n1 = np.random.randint(78, 85, size=59)
-    range_n2 = np.random.randint(78, 85, size=59)
+    range_noise = np.random.uniform(0.1, 0.55, size=59)
+    range_egt = np.random.randint(15, 41, size=59)
+    range_ff = np.random.randint(10, 34, size=59)
+    range_n1 = np.random.randint(68, 95, size=59)
+    range_n2 = np.random.randint(68, 95, size=59)
+    
+#    range_noise = np.random.uniform(0.2, 0.45, size=59)
+#    range_egt = np.random.randint(18, 38, size=59)
+#    range_ff = np.random.randint(17, 23, size=59)
+#    range_n1 = np.random.randint(70, 93, size=59)
+#    range_n2 = np.random.randint(70, 93, size=59)
     
     noise = np.cumsum(range_noise) + start_noise
     noise = np.insert(noise, 0, start_noise)
