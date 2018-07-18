@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 import pickle
 import csv
+from sklearn.metrics import r2_score
 
 # Importing the dataset
 dataset = pd.read_csv('../../../data/test_data/test_data_5.csv')
@@ -246,3 +247,7 @@ plt.xlabel('Age (in months)')
 plt.ylabel('Probability of Failure')
 plt.show()
 plt.savefig('../../../outputs/random_forest/rf_test_5.png')
+
+# Calculating r2 score
+y_actual = dataset['act_total_fp'].values
+accuracy = r2_score(y_actual, y_pred)

@@ -78,7 +78,7 @@ for engine in range(1, 11):
             noise[random_month:] += random_noise_increase
             
         elif sample == 'egt':
-            noise[random_month:] += random_egt_increase
+            egt[random_month:] += random_egt_increase
             
         elif sample == 'ff':
             ff[random_month:] += random_ff_increase

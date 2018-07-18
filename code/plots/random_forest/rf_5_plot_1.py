@@ -42,4 +42,4 @@ plt.xlabel('Age (in months)')
 plt.ylabel('Probability of Failure')
 plt.show()
 
-plt.savefig('../../../outputs/random_forest/dt_5_plots_1.png')
+plt.savefig('../../../outputs/random_forest/rf_5_plots_1.png')
