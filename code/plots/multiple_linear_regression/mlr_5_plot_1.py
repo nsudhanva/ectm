@@ -9,11 +9,11 @@ df4 = pd.read_csv('../../../data/test_data/test_data_4.csv')
 df5 = pd.read_csv('../../../data/test_data/test_data_5.csv')
 ndf = pd.read_csv('../../../data/normal_data.csv')
 
-fp_1 = df1['total_fp'].values
-fp_2 = df2['total_fp'].values
-fp_3 = df3['total_fp'].values
-fp_4 = df4['total_fp'].values
-fp_5 = df5['total_fp'].values
+fp_1 = df1['mlr_total_fp'].values
+fp_2 = df2['mlr_total_fp'].values
+fp_3 = df3['mlr_total_fp'].values
+fp_4 = df4['mlr_total_fp'].values
+fp_5 = df5['mlr_total_fp'].values
 fp_n = ndf['total_fp'].values
 
 months = ndf['month'].values

@@ -8,7 +8,7 @@ import pickle
 import csv
 
 # Importing the dataset
-dataset = pd.read_csv('../../../data/test_data/test_data_6.csv')
+dataset = pd.read_csv('../../../data/test_data/test_data_9.csv')
 
 # ==================================
 
@@ -45,7 +45,7 @@ y_pred_noise = regressor.predict(X_noise)
 y_pred_noise[y_pred_noise > 0.99] = 1
 y_pred_noise[y_pred_noise < 0] = 0
 
-dataset['fp_noise'] = y_pred_noise
+dataset['mlr_fp_noise'] = y_pred_noise
 
 # ==================================
 #               EGT
@@ -80,7 +80,7 @@ y_pred_egt = regressor.predict(X_egt)
 y_pred_egt[y_pred_egt > 0.99] = 1
 y_pred_egt[y_pred_egt < 0] = 0
 
-dataset['fp_egt'] = y_pred_egt
+dataset['mlr_fp_egt'] = y_pred_egt
 
 # ==================================
 #               FF
@@ -115,7 +115,7 @@ y_pred_ff = regressor.predict(X_ff)
 y_pred_ff[y_pred_ff > 0.99] = 1
 y_pred_ff[y_pred_ff < 0] = 0
 
-dataset['fp_ff'] = y_pred_ff
+dataset['mlr_fp_ff'] = y_pred_ff
 
 # ==================================
 #               N1
@@ -150,7 +150,7 @@ y_pred_n1 = regressor.predict(X_n1)
 y_pred_n1[y_pred_n1 > 0.99] = 1
 y_pred_n1[y_pred_n1 < 0] = 0
 
-dataset['fp_n1'] = y_pred_n1
+dataset['mlr_fp_n1'] = y_pred_n1
 
 # ==================================
 #               N2
@@ -185,13 +185,13 @@ y_pred_n2 = regressor.predict(X_n2)
 y_pred_n2[y_pred_n2 > 0.99] = 1
 y_pred_n2[y_pred_n2 < 0] = 0
 
-dataset['fp_n2'] = y_pred_n2
+dataset['mlr_fp_n2'] = y_pred_n2
 
 # ==================================
 #        Failure Probability
 # ==================================
 
-X_data = dataset.iloc[:, 1:12]
+X_data = dataset.loc[:, ['month', 'noise', 'egt', 'ff', 'n1', 'n2', 'mlr_fp_noise', 'mlr_fp_ff', 'mlr_fp_egt', 'mlr_fp_n1', 'mlr_fp_n2']]
 X = X_data.values
 
 # Encoding categorical data
@@ -220,10 +220,10 @@ y_pred = regressor.predict(X)
 y_pred[y_pred < 0] = 0
 y_pred[np.where(y_pred >= 0.98)[0][0]: ] = 1
 
-dataset['total_fp'] = y_pred
+dataset['mlr_total_fp'] = y_pred
 
 # Writing to csv file
-dataset.to_csv('../../../data/test_data/test_data_6.csv', index=False)
+dataset.to_csv('../../../data/test_data/test_data_9.csv', index=False)
 
 # ==================================
 
@@ -246,4 +246,19 @@ plt.legend(loc='best')
 plt.xlabel('Age (in months)')
 plt.ylabel('Probability of Failure')
 plt.show()
-plt.savefig('../../../outputs/multiple_linear_regression/mlr_test_6.png')
+plt.savefig('../../../outputs/multiple_linear_regression/mlr_test_9.png')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,11 +9,11 @@ df4 = pd.read_csv('../../../data/test_data/test_data_9.csv')
 df5 = pd.read_csv('../../../data/test_data/test_data_10.csv')
 ndf = pd.read_csv('../../../data/normal_data.csv')
 
-fp_1 = df1['total_fp'].values
-fp_2 = df2['total_fp'].values
-fp_3 = df3['total_fp'].values
-fp_4 = df4['total_fp'].values
-fp_5 = df5['total_fp'].values
+fp_1 = df1['dt_total_fp'].values
+fp_2 = df2['dt_total_fp'].values
+fp_3 = df3['dt_total_fp'].values
+fp_4 = df4['dt_total_fp'].values
+fp_5 = df5['dt_total_fp'].values
 fp_n = ndf['total_fp'].values
 
 months = ndf['month'].values
@@ -42,4 +42,4 @@ plt.xlabel('Age (in months)')
 plt.ylabel('Probability of Failure')
 plt.show()
 
-plt.savefig('../../../outputs/multiple_linear_regression/mlr_5_plots_2.png')
+plt.savefig('../../../outputs/decision_tree/dt_5_plots_2.png')

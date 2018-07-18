@@ -3,7 +3,7 @@ import pdb
 import pandas as pd
 import random
 
-head = ["engine", "month", "noise", "egt", "ff", "n1", "n2", "fp_noise", "fp_egt", "fp_ff", "fp_n1", "fp_n2", "total_fp", 'act_fp_noise', 'act_fp_egt', 'act_fp_ff', 'act_fp_n1', 'act_fp_n2', 'act_total_fp']           
+head = ["engine", "month", "noise", "egt", "ff", "n1", "n2", 'act_fp_noise', 'act_fp_egt', 'act_fp_ff', 'act_fp_n1', 'act_fp_n2', 'act_total_fp', "mlr_fp_noise", "mlr_fp_egt", "mlr_fp_ff", "mlr_fp_n1", "mlr_fp_n2", "mlr_total_fp", "dt_fp_noise", "dt_fp_egt", "dt_fp_ff", "dt_fp_n1", "dt_fp_n2", "dt_total_fp", "rf_fp_noise", "rf_fp_egt", "rf_fp_ff", "rf_fp_n1", "rf_fp_n2", "rf_total_fp"]           
 
 start_noise = 130
 start_egt = 1300
