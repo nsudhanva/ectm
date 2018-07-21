@@ -34,13 +34,7 @@ for engine in range(1, 1001):
     range_ff = np.random.randint(10, 34, size=59)
     range_n1 = np.random.randint(68, 95, size=59)
     range_n2 = np.random.randint(68, 95, size=59)
-    
-#    range_noise = np.random.uniform(0.2, 0.45, size=59)
-#    range_egt = np.random.randint(18, 38, size=59)
-#    range_ff = np.random.randint(17, 23, size=59)
-#    range_n1 = np.random.randint(70, 93, size=59)
-#    range_n2 = np.random.randint(70, 93, size=59)
-    
+
     noise = np.cumsum(range_noise) + start_noise
     noise = np.insert(noise, 0, start_noise)
     
