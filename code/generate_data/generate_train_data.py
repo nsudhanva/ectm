@@ -76,6 +76,9 @@ for engine in range(1, 1001):
     fp_n2[fp_n2 > 1] = 1
     
     total_fp = (fp_noise + fp_egt + fp_ff + fp_n1 + fp_n2) / 5
+    
+    total_fp[min(([np.where(fp_noise == 1)[0][0], np.where(fp_egt == 1)[0][0], np.where(fp_ff == 1)[0][0], np.where(fp_n1 == 1)[0][0], np.where(fp_n2 == 1)[0][0]])): ] = 1
+
 
     data = pd.DataFrame({'engine': engine, 'month': months, 'noise': noise, 'egt': egt, 'ff': ff, 'n1': n1, 'n2': n2, 'fp_noise': fp_noise, 'fp_egt': fp_egt, 'fp_ff': fp_ff, 'fp_n1': fp_n1, 'fp_n2': fp_n2, 'total_fp': total_fp})             
     df = df.append(data, sort=False)    

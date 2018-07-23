@@ -29,12 +29,6 @@ for engine in range(1, 11):
     fp_n2 = np.zeros(60)
     total_fp = np.zeros(60)
     
-#    range_noise = np.random.uniform(0.2, 0.45, size=59)
-#    range_egt = np.random.randint(18, 38, size=59)
-#    range_ff = np.random.randint(17, 23, size=59)
-#    range_n1 = np.random.randint(70, 93, size=59)
-#    range_n2 = np.random.randint(70, 93, size=59)
-    
     range_noise = np.random.uniform(np.random.uniform(0.2, 0.5), np.random.uniform(0.5, 1.1), size=59)
     range_egt = np.random.randint(np.random.randint(10, 35), np.random.randint(35, 75), size=59)
     range_ff = np.random.randint(np.random.randint(10, 35), np.random.randint(35, 85), size=59)
@@ -50,23 +44,18 @@ for engine in range(1, 11):
     
     noise = np.cumsum(range_noise) + start_noise
     noise = np.insert(noise, 0, start_noise)
-#    noise[random_month:] += random_noise_increase
     
     egt = np.cumsum(range_egt) + start_egt
     egt = np.insert(egt, 0, start_egt)
-#    egt[random_month:] += random_egt_increase
     
     ff = np.cumsum(range_ff) + start_ff
     ff = np.insert(ff, 0, start_ff)
-#    ff[random_month:] += random_ff_increase
     
     n1 = np.cumsum(range_n1) + start_n1
     n1 = np.insert(n1, 0, start_n1)
-#    n1[random_month:] += random_n1_increase
     
     n2 = np.cumsum(range_n2) + start_n2
     n2 = np.insert(n2, 0, start_n2)
-#    n2[random_month:] += random_n2_increase
 
     all_params = ['noise', 'egt', 'ff', 'n1', 'n2']
     sample_size = random.randint(0, 5)
@@ -115,6 +104,8 @@ for engine in range(1, 11):
     fp_n2[fp_n2 > 1] = 1
     
     total_fp = (fp_noise + fp_egt + fp_ff + fp_n1 + fp_n2) / 5
+    
+    total_fp[min(([np.where(fp_noise == 1)[0][0], np.where(fp_egt == 1)[0][0], np.where(fp_ff == 1)[0][0], np.where(fp_n1 == 1)[0][0], np.where(fp_n2 == 1)[0][0]])): ] = 1
     
     df['noise'] = noise
     df['egt'] = egt

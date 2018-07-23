@@ -42,7 +42,7 @@ with open('../../../models/decision_tree/dt_noise.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_noise = regressor.predict(X_noise)
-y_pred_noise[y_pred_noise > 0.99] = 1
+y_pred_noise[y_pred_noise > 0.98] = 1
 y_pred_noise[y_pred_noise < 0] = 0
 
 dataset['dt_fp_noise'] = y_pred_noise
@@ -77,7 +77,7 @@ with open('../../../models/decision_tree/dt_egt.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_egt = regressor.predict(X_egt)
-y_pred_egt[y_pred_egt > 0.99] = 1
+y_pred_egt[y_pred_egt > 0.98] = 1
 y_pred_egt[y_pred_egt < 0] = 0
 
 dataset['dt_fp_egt'] = y_pred_egt
@@ -112,7 +112,7 @@ with open('../../../models/decision_tree/dt_ff.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_ff = regressor.predict(X_ff)
-y_pred_ff[y_pred_ff > 0.99] = 1
+y_pred_ff[y_pred_ff > 0.98] = 1
 y_pred_ff[y_pred_ff < 0] = 0
 
 dataset['dt_fp_ff'] = y_pred_ff
@@ -147,7 +147,7 @@ with open('../../../models/decision_tree/dt_n1.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_n1 = regressor.predict(X_n1)
-y_pred_n1[y_pred_n1 > 0.99] = 1
+y_pred_n1[y_pred_n1 > 0.98] = 1
 y_pred_n1[y_pred_n1 < 0] = 0
 
 dataset['dt_fp_n1'] = y_pred_n1
@@ -182,7 +182,7 @@ with open('../../../models/decision_tree/dt_n2.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_n2 = regressor.predict(X_n2)
-y_pred_n2[y_pred_n2 > 0.99] = 1
+y_pred_n2[y_pred_n2 > 0.98] = 1
 y_pred_n2[y_pred_n2 < 0] = 0
 
 dataset['dt_fp_n2'] = y_pred_n2

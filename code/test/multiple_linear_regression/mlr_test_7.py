@@ -43,7 +43,7 @@ with open('../../../models/multiple_linear_regression/mlr_noise.pkl', 'rb') as f
 
 # Predicting the results
 y_pred_noise = regressor.predict(X_noise)
-y_pred_noise[y_pred_noise > 0.99] = 1
+y_pred_noise[y_pred_noise > 0.98] = 1
 y_pred_noise[y_pred_noise < 0] = 0
 
 dataset['mlr_fp_noise'] = y_pred_noise
@@ -78,7 +78,7 @@ with open('../../../models/multiple_linear_regression/mlr_egt.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_egt = regressor.predict(X_egt)
-y_pred_egt[y_pred_egt > 0.99] = 1
+y_pred_egt[y_pred_egt > 0.98] = 1
 y_pred_egt[y_pred_egt < 0] = 0
 
 dataset['mlr_fp_egt'] = y_pred_egt
@@ -113,7 +113,7 @@ with open('../../../models/multiple_linear_regression/mlr_ff.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_ff = regressor.predict(X_ff)
-y_pred_ff[y_pred_ff > 0.99] = 1
+y_pred_ff[y_pred_ff > 0.98] = 1
 y_pred_ff[y_pred_ff < 0] = 0
 
 dataset['mlr_fp_ff'] = y_pred_ff
@@ -148,7 +148,7 @@ with open('../../../models/multiple_linear_regression/mlr_n1.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_n1 = regressor.predict(X_n1)
-y_pred_n1[y_pred_n1 > 0.99] = 1
+y_pred_n1[y_pred_n1 > 0.98] = 1
 y_pred_n1[y_pred_n1 < 0] = 0
 
 dataset['mlr_fp_n1'] = y_pred_n1
@@ -183,7 +183,7 @@ with open('../../../models/multiple_linear_regression/mlr_n2.pkl', 'rb') as f:
 
 # Predicting the results
 y_pred_n2 = regressor.predict(X_n2)
-y_pred_n2[y_pred_n2 > 0.99] = 1
+y_pred_n2[y_pred_n2 > 0.98] = 1
 y_pred_n2[y_pred_n2 < 0] = 0
 
 dataset['mlr_fp_n2'] = y_pred_n2
@@ -219,7 +219,7 @@ with open('../../../models/multiple_linear_regression/mlr_total_fp.pkl', 'rb') a
 # Predicting the results
 y_pred = regressor.predict(X)
 y_pred[y_pred < 0] = 0
-y_pred[np.where(y_pred >= 0.98)[0][0]: ] = 1
+y_pred[min(([np.where(y_pred_noise == 1)[0][0], np.where(y_pred_egt == 1)[0][0], np.where(y_pred_ff == 1)[0][0], np.where(y_pred_n1 == 1)[0][0], np.where(y_pred_n2 == 1)[0][0]])): ] = 1
 
 dataset['mlr_total_fp'] = y_pred
 
