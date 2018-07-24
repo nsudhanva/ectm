@@ -218,7 +218,9 @@ with open('../../../models/decision_tree/dt_total_fp.pkl', 'rb') as f:
 # Predicting the results
 y_pred = regressor.predict(X)
 y_pred[y_pred < 0] = 0
-y_pred[np.where(y_pred >= 0.98)[0][0]: ] = 1
+y_pred[min(([np.where(y_pred_noise == 1)[0][0], np.where(y_pred_egt == 1)[0][0], np.where(y_pred_ff == 1)[0][0], np.where(y_pred_n1 == 1)[0][0], np.where(y_pred_n2 == 1)[0][0]])): ] = 1
+
+y_pred[min(([np.where(y_pred_noise == 1)[0][0], np.where(y_pred_egt == 1)[0][0], np.where(y_pred_ff == 1)[0][0], np.where(y_pred_n1 == 1)[0][0], np.where(y_pred_n2 == 1)[0][0]])): ] = 1
 
 dataset['dt_total_fp'] = y_pred
 
