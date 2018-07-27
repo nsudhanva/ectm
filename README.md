@@ -1,4 +1,4 @@
-# Engine Condition Trend Monitoring for Aircraft Engines.
+# Engine Condition Trend Monitoring
 
 # Dependencies
 
